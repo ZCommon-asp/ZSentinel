@@ -1,0 +1,8 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../../:\project\Sentinel-1.7.1\Sentinel-1.7.1\sentinel-adapter\sentinel-api-gateway-adapter-common\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

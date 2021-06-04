@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sentinel-api-gateway-adapter-common.iml" filepath="$PROJECT_DIR$/sentinel-api-gateway-adapter-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../sentinel-extension/sentinel-parameter-flow-control/sentinel-parameter-flow-control.iml" filepath="$PROJECT_DIR$/../../sentinel-extension/sentinel-parameter-flow-control/sentinel-parameter-flow-control.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../sentinel-parent/sentinel-parent.iml" filepath="$PROJECT_DIR$/../sentinel-parent/sentinel-parent.iml" />
+    </modules>
+  </component>
+</project>

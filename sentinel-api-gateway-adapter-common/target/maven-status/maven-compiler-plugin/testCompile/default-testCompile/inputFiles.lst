@@ -1,0 +1,5 @@
+C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\test\java\com\alibaba\csp\sentinel\adapter\gateway\common\param\GatewayParamParserTest.java
+C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\test\java\com\alibaba\csp\sentinel\adapter\gateway\common\api\GatewayApiDefinitionManagerTest.java
+C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\test\java\com\alibaba\csp\sentinel\adapter\gateway\common\param\GatewayRegexCacheTest.java
+C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\test\java\com\alibaba\csp\sentinel\adapter\gateway\common\rule\GatewayRuleManagerTest.java
+C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\test\java\com\alibaba\csp\sentinel\adapter\gateway\common\rule\GatewayRuleConverterTest.java

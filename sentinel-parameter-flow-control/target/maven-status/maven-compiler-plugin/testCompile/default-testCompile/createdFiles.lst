@@ -1,0 +1,17 @@
+com\alibaba\csp\sentinel\slots\statistic\metric\HotParameterLeapArrayTest$1.class
+com\alibaba\csp\sentinel\test\AbstractTimeBasedTest.class
+com\alibaba\csp\sentinel\slots\statistic\metric\HotParameterLeapArrayTest.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowCheckerTest.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowRuleUtilTest.class
+com\alibaba\csp\sentinel\slots\statistic\metric\HotParameterLeapArrayTest$2.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowDefaultCheckerTest$1.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParameterMetricTest.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowDefaultCheckerTest.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowThrottleRateLimitingCheckerTest$2.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowDefaultCheckerTest$2.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParameterMetricStorageTest.class
+com\alibaba\csp\sentinel\slots\statistic\data\ParamMapBucketTest.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowRuleManagerTest.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowSlotTest.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowThrottleRateLimitingCheckerTest$1.class
+com\alibaba\csp\sentinel\slots\block\flow\param\ParamFlowThrottleRateLimitingCheckerTest.class
