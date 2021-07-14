@@ -10,5 +10,6 @@ package com.alibaba.csp.sentinel.adapter.gateway.common;
  */
 public class SentinelApplication {
     public static void main(String[] args) {
+
     }
 }
