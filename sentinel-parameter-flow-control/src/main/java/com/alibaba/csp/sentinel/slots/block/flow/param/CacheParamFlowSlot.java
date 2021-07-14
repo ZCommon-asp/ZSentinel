@@ -22,12 +22,11 @@ import java.util.Map;
  * @since
  */
 public class CacheParamFlowSlot extends AbstractLinkedProcessorSlot<DefaultNode> {
-   private static final Map<String,TRiskInfoModel> tRiskInfoModelMap =  FlowRiskDefinition.getRisk();
-
 
     @Override
     public void entry(Context context, ResourceWrapper resourceWrapper, DefaultNode node, int count,
                       boolean prioritized, Object... args) throws Throwable {
+        System.out.println("CacheParamFlowSlot.entry...");
         checkFlow(resourceWrapper, count, args);
         fireEntry(context, resourceWrapper, node, count, prioritized, args);
     }
@@ -55,6 +54,7 @@ public class CacheParamFlowSlot extends AbstractLinkedProcessorSlot<DefaultNode>
         }
         String resourceName = resourceWrapper.getName();
         List<ParamFlowRule> rules = applyNonParamToParamRule(getFlowRuleByResourceName(resourceName), resourceName);
+        System.out.println("CacheParamFlowSlot checkFlow:" + JSONObject.toJSONString(rules));
         for (ParamFlowRule rule : rules) {
             applyRealParamIdx(rule, args.length);
 
@@ -86,6 +86,9 @@ public class CacheParamFlowSlot extends AbstractLinkedProcessorSlot<DefaultNode>
 
     public static List<ParamFlowRule> applyNonParamToParamRule(List<TRiskInfoModel> riskInfoModels, String resourceName) {
         List<ParamFlowRule> flowRules = new ArrayList<>();
+        if (null == riskInfoModels || riskInfoModels.isEmpty()) {
+            return flowRules;
+        }
         riskInfoModels.forEach(riskInfoModel -> {
             flowRules.add(applyNonParamToParamRule(riskInfoModel, resourceName, 0));
         });
@@ -94,7 +97,17 @@ public class CacheParamFlowSlot extends AbstractLinkedProcessorSlot<DefaultNode>
 
     public static List<TRiskInfoModel> getFlowRuleByResourceName(String resourceName) {
         List<TRiskInfoModel> riskInfoModels = new ArrayList<>();
-        TRiskInfoModel riskInfoModel = tRiskInfoModelMap.get(resourceName);
+
+        TRiskInfoModel riskInfoModel = getRiskInfoModel(resourceName);
+
+        if (null != riskInfoModel) {
+            riskInfoModels.add(riskInfoModel);
+        }
+        return riskInfoModels;
+    }
+
+    public static TRiskInfoModel getRiskInfoModel(String resourceName) {
+        TRiskInfoModel riskInfoModel = FlowRiskDefinition.getRisk().get(resourceName);
         //仅存QPS
         if (null == riskInfoModel) {
             if (resourceName.contains("TYPE_SENTINEL_DAY")) {
@@ -105,11 +118,7 @@ public class CacheParamFlowSlot extends AbstractLinkedProcessorSlot<DefaultNode>
                 resourceName = "DEFAULT|TYPE_SENTINEL_QPS";
             }
         }
-        riskInfoModel = tRiskInfoModelMap.get(resourceName);
-
-        if (null != riskInfoModel) {
-            riskInfoModels.add(riskInfoModel);
-        }
-        return riskInfoModels;
+        riskInfoModel = FlowRiskDefinition.getRisk().get(resourceName);
+        return riskInfoModel;
     }
 }

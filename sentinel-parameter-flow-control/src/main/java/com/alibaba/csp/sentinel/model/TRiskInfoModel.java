@@ -9,8 +9,6 @@ import java.util.Date;
  */
 
 public class TRiskInfoModel implements Serializable {
-
-    private String resourceName;
     /**
      * 主键
      */
@@ -81,14 +79,6 @@ public class TRiskInfoModel implements Serializable {
     private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
-
-    public String getResourceName() {
-        return resourceName;
-    }
-
-    public void setResourceName(String resourceName) {
-        this.resourceName = resourceName;
-    }
 
     public Long getId() {
         return id;

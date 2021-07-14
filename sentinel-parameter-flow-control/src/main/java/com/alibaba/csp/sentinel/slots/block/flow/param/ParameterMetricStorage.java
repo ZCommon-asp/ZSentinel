@@ -83,7 +83,7 @@ public final class ParameterMetricStorage {
         RecordLog.info("[ParameterMetricStorage] Clearing parameter metric for: " + resourceName);
     }
 
-    static Map<String, ParameterMetric> getMetricsMap() {
+    public static Map<String, ParameterMetric> getMetricsMap() {
         return metricsMap;
     }
 

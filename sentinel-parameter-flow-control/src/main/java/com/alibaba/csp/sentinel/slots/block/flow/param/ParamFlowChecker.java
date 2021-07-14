@@ -36,6 +36,7 @@ import com.alibaba.csp.sentinel.slotchain.ResourceWrapper;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.statistic.cache.CacheMap;
 import com.alibaba.csp.sentinel.util.TimeUtil;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * Rule checker for parameter flow control.
@@ -46,7 +47,7 @@ import com.alibaba.csp.sentinel.util.TimeUtil;
 public final class ParamFlowChecker {
 
     public static boolean passCheck(ResourceWrapper resourceWrapper, /*@Valid*/ ParamFlowRule rule, /*@Valid*/ int count,
-                             Object... args) {
+                                    Object... args) {
         if (args == null) {
             return true;
         }
@@ -73,7 +74,7 @@ public final class ParamFlowChecker {
                                           Object value) {
         try {
             if (Collection.class.isAssignableFrom(value.getClass())) {
-                for (Object param : ((Collection)value)) {
+                for (Object param : ((Collection) value)) {
                     if (!passSingleValueCheck(resourceWrapper, rule, count, param)) {
                         return false;
                     }
@@ -102,6 +103,7 @@ public final class ParamFlowChecker {
             if (rule.getControlBehavior() == RuleConstant.CONTROL_BEHAVIOR_RATE_LIMITER) {
                 return passThrottleLocalCheck(resourceWrapper, rule, acquireCount, value);
             } else {
+                System.out.println("passDefaultLocalCheck starting:" + resourceWrapper.getName());
                 return passDefaultLocalCheck(resourceWrapper, rule, acquireCount, value);
             }
         } else if (rule.getGrade() == RuleConstant.FLOW_GRADE_THREAD) {
@@ -111,7 +113,7 @@ public final class ParamFlowChecker {
                 int itemThreshold = rule.getParsedHotItems().get(value);
                 return ++threadCount <= itemThreshold;
             }
-            long threshold = (long)rule.getCount();
+            long threshold = (long) rule.getCount();
             return ++threadCount <= threshold;
         }
 
@@ -124,13 +126,17 @@ public final class ParamFlowChecker {
         CacheMap<Object, AtomicLong> tokenCounters = metric == null ? null : metric.getRuleTokenCounter(rule);
         CacheMap<Object, AtomicLong> timeCounters = metric == null ? null : metric.getRuleTimeCounter(rule);
 
+        System.out.println("passDefaultLocalCheck rule:" + JSONObject.toJSONString(rule)
+                + ",tokenCounters:" + JSONObject.toJSONString(tokenCounters)
+                + ",timeCounters:" + JSONObject.toJSONString(timeCounters));
+
         if (tokenCounters == null || timeCounters == null) {
             return true;
         }
 
         // Calculate max token count (threshold)
         Set<Object> exclusionItems = rule.getParsedHotItems().keySet();
-        long tokenCount = (long)rule.getCount();
+        long tokenCount = (long) rule.getCount();
         if (exclusionItems.contains(value)) {
             tokenCount = rule.getParsedHotItems().get(value);
         }
@@ -167,7 +173,7 @@ public final class ParamFlowChecker {
                     long restQps = oldQps.get();
                     long toAddCount = (passTime * tokenCount) / (rule.getDurationInSec() * 1000);
                     long newQps = toAddCount + restQps > maxCount ? (maxCount - acquireCount)
-                        : (restQps + toAddCount - acquireCount);
+                            : (restQps + toAddCount - acquireCount);
 
                     if (newQps < 0) {
                         return false;
@@ -205,7 +211,7 @@ public final class ParamFlowChecker {
 
         // Calculate max token count (threshold)
         Set<Object> exclusionItems = rule.getParsedHotItems().keySet();
-        long tokenCount = (long)rule.getCount();
+        long tokenCount = (long) rule.getCount();
         if (exclusionItems.contains(value)) {
             tokenCount = rule.getParsedHotItems().get(value);
         }
@@ -255,7 +261,7 @@ public final class ParamFlowChecker {
     @SuppressWarnings("unchecked")
     private static Collection<Object> toCollection(Object value) {
         if (value instanceof Collection) {
-            return (Collection<Object>)value;
+            return (Collection<Object>) value;
         } else if (value.getClass().isArray()) {
             List<Object> params = new ArrayList<Object>();
             int length = Array.getLength(value);

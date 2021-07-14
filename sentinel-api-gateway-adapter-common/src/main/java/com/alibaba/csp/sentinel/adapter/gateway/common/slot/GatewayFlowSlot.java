@@ -25,6 +25,7 @@ import com.alibaba.csp.sentinel.slotchain.AbstractLinkedProcessorSlot;
 import com.alibaba.csp.sentinel.slotchain.ResourceWrapper;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.flow.param.*;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * @author Eric Zhao
@@ -35,6 +36,7 @@ public class GatewayFlowSlot extends AbstractLinkedProcessorSlot<DefaultNode> {
     @Override
     public void entry(Context context, ResourceWrapper resource, DefaultNode node, int count,
                       boolean prioritized, Object... args) throws Throwable {
+        System.out.println("GatewayFlowSlot->entry...");
         checkGatewayParamFlow(resource, count, args);
         fireEntry(context, resource, node, count, prioritized, args);
     }
@@ -49,6 +51,7 @@ public class GatewayFlowSlot extends AbstractLinkedProcessorSlot<DefaultNode> {
         List<ParamFlowRule> rules = GatewayRuleManager.getConvertedParamRules(name);
         if (rules == null || rules.isEmpty()) {
             List<TRiskInfoModel> flowRuleByResourceName = CacheParamFlowSlot.getFlowRuleByResourceName(name);
+            System.out.println("checkGatewayParamFlow:" + JSONObject.toJSONString(flowRuleByResourceName));
             rules = CacheParamFlowSlot.applyNonParamToParamRule(flowRuleByResourceName, name);
             if (rules == null || rules.isEmpty()) {
                 return;

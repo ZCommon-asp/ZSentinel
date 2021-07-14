@@ -13,6 +13,7 @@ C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java
 C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java\com\alibaba\csp\sentinel\adapter\gateway\common\param\GatewayRegexCache.java
 C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java\com\alibaba\csp\sentinel\adapter\gateway\common\api\GatewayApiDefinitionManager.java
 C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java\com\alibaba\csp\sentinel\adapter\gateway\common\param\GatewayParamParser.java
+C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java\com\alibaba\csp\sentinel\adapter\gateway\common\SentinelApplication.java
 C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java\com\alibaba\csp\sentinel\adapter\gateway\common\api\ApiDefinitionChangeObserver.java
 C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java\com\alibaba\csp\sentinel\adapter\gateway\common\param\RequestItemParser.java
 C:\gitProjects\sentinel-aspire\sentinel-api-gateway-adapter-common\src\main\java\com\alibaba\csp\sentinel\adapter\gateway\common\command\UpdateGatewayApiDefinitionGroupCommandHandler.java
